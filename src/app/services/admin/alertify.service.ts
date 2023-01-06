@@ -8,7 +8,6 @@ export class AlertifyService {
   constructor() {}
 
   message(  message: string,options:Partial<AlertifyOptions>) {
-    debugger
     alertify.set('notifier', 'delay', options.messageTime);
     alertify.set('notifier', 'position', options.messagePosition);
     const msg = alertify[options.messageType](message);
@@ -23,13 +22,13 @@ export class AlertifyService {
 }
 
 export class AlertifyOptions {
-  messageType: MessageType = MessageType.Message;
-  messagePosition: MessagePosition = MessagePosition.TopLeft;
+  messageType: AlertifyMessageType = AlertifyMessageType.Message;
+  messagePosition: AlertifyMessagePosition = AlertifyMessagePosition.TopLeft;
   messageTime: Number = 3;
   dismissothers: boolean = false;
 }
 
-export enum MessageType {
+export enum AlertifyMessageType {
   Error = 'error',
   Message = 'message',
   Success = 'success',
@@ -37,7 +36,7 @@ export enum MessageType {
 
 }
 
-export enum MessagePosition {
+export enum AlertifyMessagePosition {
   TopLeft = 'top-left',
   TopRight = 'top-right',
   BottomLeft = 'bottom-left',
