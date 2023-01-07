@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
+import { ProductService } from 'src/app/services/common/models/product.service';
 
 @Component({
   selector: 'app-products',
@@ -17,5 +19,8 @@ export class ProductsComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.showSpinner(SpinnerType.BallScaleMultiple)
   }
+
+
+
 
 }

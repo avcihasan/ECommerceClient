@@ -1,0 +1,27 @@
+
+
+<p>
+  <mat-form-field appearance="outline" >
+    <mat-label>Product Name</mat-label>
+    <input matInput placeholder="Product Name" #productName>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Product Price</mat-label>
+    <input matInput placeholder="Product Price" type="number" min="0" #productPrice>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Product Quantity</mat-label>
+    <input matInput placeholder="Product Quantity" type="number" min="0" #productQuantity>
+  </mat-form-field>
+</p>
+  <p class="example-section">
+    <mat-checkbox class="example-margin" #productSale>Product On Sale ?</mat-checkbox>
+  </p>
+
+<p class="createProduct-button">
+  <button mat-raised-button color="warn" (click)="createProduct(productName,productPrice,productQuantity,productSale)">Create Product</button>
+</p>
