@@ -28,11 +28,20 @@ export class CreateProductComponent extends BaseComponent implements OnInit {
    product.price=parseFloat(price.value);
    product.quantity=parseInt(quantity.value);
     product.sale=sale.checked;
-
+    debugger;
     this.prodcutService.create(product,()=>{
+
       this.hideSpinner(SpinnerType.Cog );
 
       this.alertify.message("Ekleme Başarılı",{messageType:AlertifyMessageType.Success,messagePosition:AlertifyMessagePosition.TopRight})
+    },errorMessage=>{
+      this.hideSpinner(SpinnerType.Cog );
+      this.alertify.message(errorMessage,{
+        messagePosition:AlertifyMessagePosition.TopRight,
+        messageType:AlertifyMessageType.Error,
+        dismissothers:true
+      })
+
     });
   }
 
