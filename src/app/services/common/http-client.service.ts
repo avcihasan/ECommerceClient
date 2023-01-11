@@ -20,7 +20,7 @@ export class HttpClientService {
   get<T>(request: Partial<RequestParameters>,id?:string):Observable<T> {
     let url: string = '';
     if (request.fullEndPoint) url = request.fullEndPoint;
-    else url = `${this.url(request)}${id?`/${id}`:""}`;
+    else url = `${this.url(request)}${id?`/${id}`:""}${request.queryString?`?${request.queryString}`:""}`;
     return this.httpClient.get<T>(url,{headers: request.headers});
   }
   post<T>(request:Partial<RequestParameters>,body:Partial<T>):Observable<T>{
@@ -55,4 +55,5 @@ export class RequestParameters {
   headers?: HttpHeaders;
   baseUrl?: string;
   fullEndPoint?: string;
+  queryString?:string;
 }

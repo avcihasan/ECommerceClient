@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
+import { GetProducts } from 'src/app/contracts/get-products';
 import { ListProduct } from 'src/app/contracts/list-products';
 import {
   AlertifyMessagePosition,
@@ -11,6 +12,7 @@ import {
   AlertifyService,
 } from 'src/app/services/admin/alertify.service';
 import { ProductService } from 'src/app/services/common/models/product.service';
+  declare var $:any;
 
 @Component({
   selector: 'app-list-products',
@@ -32,14 +34,18 @@ export class ListProductsComponent extends BaseComponent implements OnInit {
     'sale',
     'createdDate',
    'updatedDate',
+   'update',
+   'delete'
   ];
   dataSource: MatTableDataSource<ListProduct> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  async ngOnInit() {
 
-    this.showSpinner(SpinnerType.SquarejellyBox);
-    const allProducts:ListProduct[]= await this.productService.getAll(
+
+
+async getProducts(){
+  this.showSpinner(SpinnerType.SquarejellyBox);
+    const allProducts:GetProducts= await this.productService.read(this.paginator?this.paginator.pageIndex:0,this.paginator?this.paginator.pageSize:9,
 
       () => {
         this.hideSpinner(SpinnerType.SquarejellyBox);
@@ -54,7 +60,14 @@ export class ListProductsComponent extends BaseComponent implements OnInit {
     );
 
 
-    this.dataSource=new MatTableDataSource<ListProduct>(allProducts)
-    this.dataSource.paginator = this.paginator;
+    this.dataSource=new MatTableDataSource<ListProduct>(allProducts.products)
+    this.paginator.length=allProducts.totalCount;
+}
+async pageChanged(){
+  await this.getProducts();
+}
+  async ngOnInit() {
+
+    await this.getProducts();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
@@ -20,6 +20,7 @@ export class CreateProductComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Output() createdProduct: EventEmitter<CreateProduct>= new EventEmitter();
 
   createProduct(name:HTMLInputElement,price:HTMLInputElement,quantity:HTMLInputElement,sale:MatCheckbox){
     this.showSpinner(SpinnerType.Cog );
@@ -31,6 +32,8 @@ export class CreateProductComponent extends BaseComponent implements OnInit {
     debugger;
     this.prodcutService.create(product,()=>{
 
+
+
       this.hideSpinner(SpinnerType.Cog );
 
       this.alertify.message("Ekleme Başarılı",{messageType:AlertifyMessageType.Success,messagePosition:AlertifyMessagePosition.TopRight})
@@ -40,7 +43,8 @@ export class CreateProductComponent extends BaseComponent implements OnInit {
         messagePosition:AlertifyMessagePosition.TopRight,
         messageType:AlertifyMessageType.Error,
         dismissothers:true
-      })
+      });
+      this.createdProduct.emit(product);
 
     });
   }

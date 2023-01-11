@@ -12,11 +12,13 @@ import { ListProductsComponent } from './list-products/list-products.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { DeleteDirective } from 'src/app/directives/admin/delete.directive';
 @NgModule({
   declarations: [
     ProductsComponent,
     CreateProductComponent,
-    ListProductsComponent
+    ListProductsComponent,
+    DeleteDirective
   ],
   imports: [
     CommonModule,
