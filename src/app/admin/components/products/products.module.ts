@@ -13,12 +13,15 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { DeleteDirective } from 'src/app/directives/admin/delete.directive';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 @NgModule({
   declarations: [
     ProductsComponent,
     CreateProductComponent,
     ListProductsComponent,
-    DeleteDirective
+    DeleteDirective,
+    DeleteDialogComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,7 @@ import { DeleteDirective } from 'src/app/directives/admin/delete.directive';
     ]),
     MatSidenavModule,MatFormFieldModule,MatInputModule,MatCheckboxModule,MatButtonModule,
     MatTableModule,MatPaginatorModule,
-    MatToolbarModule
+    MatToolbarModule,MatDialogModule
   ]
 })
 export class ProductsModule { }

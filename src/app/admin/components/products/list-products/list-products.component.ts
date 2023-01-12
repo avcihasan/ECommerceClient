@@ -46,11 +46,12 @@ export class ListProductsComponent extends BaseComponent implements OnInit {
 async getProducts(){
   this.showSpinner(SpinnerType.SquarejellyBox);
     const allProducts:GetProducts= await this.productService.read(this.paginator?this.paginator.pageIndex:0,this.paginator?this.paginator.pageSize:9,
-
       () => {
         this.hideSpinner(SpinnerType.SquarejellyBox);
       },
       (errorMessage) => {
+        this.hideSpinner(SpinnerType.SquarejellyBox);
+
         this.alertify.dismiss();
         this.alertify.message(errorMessage, {
           messagePosition: AlertifyMessagePosition.BottomRight,
