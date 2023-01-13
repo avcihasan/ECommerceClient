@@ -15,6 +15,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { DeleteDirective } from 'src/app/directives/admin/delete.directive';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
+import { FileUploadModule } from 'src/app/services/common/file-upload/file-upload.module';
 @NgModule({
   declarations: [
     ProductsComponent,
@@ -30,7 +31,8 @@ import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dial
     ]),
     MatSidenavModule,MatFormFieldModule,MatInputModule,MatCheckboxModule,MatButtonModule,
     MatTableModule,MatPaginatorModule,
-    MatToolbarModule,MatDialogModule
+    MatToolbarModule,MatDialogModule,
+    FileUploadModule
   ]
 })
 export class ProductsModule { }

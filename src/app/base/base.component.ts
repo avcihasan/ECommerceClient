@@ -6,7 +6,11 @@ export class BaseComponent{
   constructor(private spinner:NgxSpinnerService) { }
 
 showSpinner(spinnerType:SpinnerType){
-  this.spinner.show(spinnerType);
+  // this.spinner.show(spinnerType);
+
+  // setTimeout(function() {
+  //   this.spinner.hide(spinnerType)
+  // }, 1000);
 
 }
 

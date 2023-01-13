@@ -8,10 +8,8 @@ import { UiModule } from './ui/ui.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { BaseComponent } from './base/base.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DeleteDirective } from './directives/admin/delete.directive';
-import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
+import { NgxFileDropModule } from 'ngx-file-drop';
 @NgModule({
   declarations: [AppComponent, ],
   imports: [
