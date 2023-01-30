@@ -7,6 +7,7 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog
 import { DeleteDialogComponent, DeleteState } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpClientService } from 'src/app/services/common/http-client.service';
+import { DialogService } from 'src/app/services/common/dialog.service';
 
 declare var $:any;
 @Directive({
@@ -19,11 +20,14 @@ export class DeleteDirective {
     private httpService:HttpClientService,
     private spinner: NgxSpinnerService,
     public dialog: MatDialog,
-    private alertify:AlertifyService
+    private alertify:AlertifyService,
+    private dialogService:DialogService
   ) {
     const img = _renderer.createElement('img');
     img.setAttribute('src', '../../../../../assets/trash.png');
     img.setAttribute('style', 'cursor: pointer;');
+    img.setAttribute('width', '25');
+    img.setAttribute('height', '25');
     _renderer.appendChild(element.nativeElement, img);
   }
 
@@ -33,38 +37,31 @@ export class DeleteDirective {
 
   @HostListener("click")
   async onclick(){
-    this.openDialog(async ()=>{
-      this.spinner.show(SpinnerType.SquarejellyBox)
-      const td:HTMLTableCellElement=this.element.nativeElement;
+    this.dialogService.openDialog({
+      componentType:DeleteDialogComponent,
+       data:DeleteState.Yes,
+       afterClosed:async ()=>{
+        this.spinner.show(SpinnerType.SquarejellyBox)
+        const td:HTMLTableCellElement=this.element.nativeElement;
 
-     this.httpService.delete({controller:this.controller},this.id).subscribe(data=>{
-      $(td.parentElement).fadeOut(1000,()=>{
-        this.callback.emit();
-        this.alertify.message("Ürün başarılı bir şekilde silindi.",{dismissothers:true,messagePosition:AlertifyMessagePosition.TopCenter,messageType:AlertifyMessageType.Success})
+       this.httpService.delete({controller:this.controller},this.id).subscribe(data=>{
+        $(td.parentElement).fadeOut(1000,()=>{
+          this.callback.emit();
+          this.alertify.message("Ürün başarılı bir şekilde silindi.",{dismissothers:true,messagePosition:AlertifyMessagePosition.TopCenter,messageType:AlertifyMessageType.Success})
 
-      });
-     },(err:HttpErrorResponse)=>{
-      this.spinner.hide(SpinnerType.SquarejellyBox);
-        this.alertify.message("Silme esnasında beklenmeyen bir hata ile kaşılaşıldı.",{dismissothers:true,messagePosition:AlertifyMessagePosition.TopCenter,messageType:AlertifyMessageType.Error})
+        });
+       },(err:HttpErrorResponse)=>{
+        this.spinner.hide(SpinnerType.SquarejellyBox);
+          this.alertify.message("Silme esnasında beklenmeyen bir hata ile kaşılaşıldı.",{dismissothers:true,messagePosition:AlertifyMessagePosition.TopCenter,messageType:AlertifyMessageType.Error})
 
 
-     })
+       })
 
+      }
     })
   }
 
 
-  openDialog(afterClosed:any): void {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: DeleteState.Yes,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result==DeleteState.Yes){
-      afterClosed();
-      }
-    });
-  }
 
 
 }

@@ -28,13 +28,6 @@ export class CreateProductComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {}
 
   @Output() createdProduct: EventEmitter<CreateProduct> = new EventEmitter();
-  @Output() fileUploadOptions: Partial<FileUploadOptions> = {
-    action: "upload",
-    controller: "products",
-    explanation: "Resimleri sürükleyin veya seçin...",
-    isAdminPage: true,
-    accept:".png, .jpg, .jpeg, .json"
-  };
 
   createProduct(
     name: HTMLInputElement,
@@ -59,7 +52,6 @@ export class CreateProductComponent extends BaseComponent implements OnInit {
           messagePosition: AlertifyMessagePosition.TopRight,
         });
         this.createdProduct.emit(product);
-
       },
       (errorMessage) => {
         this.hideSpinner(SpinnerType.Cog);
@@ -68,7 +60,6 @@ export class CreateProductComponent extends BaseComponent implements OnInit {
           messageType: AlertifyMessageType.Error,
           dismissothers: true,
         });
-
       }
     );
   }
