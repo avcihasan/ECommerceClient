@@ -36,7 +36,7 @@ export class SelectProductImageDialogComponent extends BaseDialog<SelectProductI
 
   @Output() options: Partial<FileUploadOptions> = {
     accept: ".png, .jpg, .jpeg, .gif",
-    action: "upload",
+    action: "UploadProductImage",
     controller: "products",
     explanation: "Ürün resimini seçin veya buraya sürükleyin...",
     isAdminPage: true,

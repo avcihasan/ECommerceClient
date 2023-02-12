@@ -1,0 +1,59 @@
+
+<div class="row py-5">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <form [formGroup]="frm" (ngSubmit)="onSubmit(frm.value)">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="name" class="form-label" placeholder="Name" >Name</label>
+          <input type="text" formControlName="name"  class="form-control" id="name"  [ngClass]="{'is-invalid': submitted && component.name.errors}">
+          <div class="form-text" *ngIf="submitted && component.name.errors?.required">Lütfen Ad Alanını doldurunuz!</div>
+          <div class="form-text" *ngIf="submitted && (component.name.errors?.maxlength || component.name.errors?.minlength)">Lütfen Ad Alanını 3-50 arası yazınız!</div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="surname" class="form-label" >Surname</label>
+          <input type="text" formControlName="surname" class="form-control" id="surname"   [ngClass]="{'is-invalid': submitted && component.surname.errors}">
+          <div class="form-text" *ngIf="submitted && component.surname.errors?.required">Lütfen Soyad Alanını doldurunuz!</div>
+          <div class="form-text" *ngIf="submitted && (component.surname.errors?.maxlength || component.surname.errors?.minlength)">Lütfen Soyad Alanını 3-50 arası yazınız!</div>
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="username" class="form-label" >Username</label>
+        <input type="text" formControlName="username"  class="form-control" id="username" [ngClass]="{'is-invalid': submitted && component.username.errors}">
+        <div class="form-text" *ngIf="submitted && component.username.errors?.required">Lütfen Kullanıcı Alanını doldurunuz!</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label" >Email</label>
+        <input type="email" formControlName="email"  class="form-control" id="email" [ngClass]="{'is-invalid': submitted && component.email.errors}">
+        <div class="form-text" *ngIf="submitted && component.email.errors?.required">Lütfen Email Alanını doldurunuz!</div>
+        <div class="form-text" *ngIf="submitted && component.email.errors?.email">Lütfen Email Alanını düzgün giriniz!</div>
+
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" formControlName="password"  class="form-control" id="password" [ngClass]="{'is-invalid': submitted && component.password.errors}">
+        <div class="form-text" *ngIf="submitted && component.password.errors?.required">Lütfen Şifre Alanınıdoldurunuz!</div>
+
+      </div>
+      <div class="mb-3">
+        <label for="passwordConfirm" class="form-label">Password Confirm</label>
+        <input type="password" formControlName="passwordConfirm"  class="form-control" id="passwordConfirm" [ngClass]="{'is-invalid': submitted && component.passwordConfirm.errors}">
+        <div class="form-text" *ngIf="submitted && component.passwordConfirm.errors?.required">Lütfen Şifre Tekrar Alanını doldurunuz!</div>
+        <div class="form-text" *ngIf="submitted && frm.hasError('notSame')">Lütfen Şifreyi doğrulayınız!</div>
+
+      </div>
+
+      <div class="text-center">
+         <button type="submit" class="btn btn-danger">Kullanıcı Ekle</button>
+      </div>
+
+
+    </form>
+  </div>
+  <div class="col-md-4"></div>
+
+</div>
