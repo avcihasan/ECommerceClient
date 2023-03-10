@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxFileDropModule } from 'ngx-file-drop';
+import { JwtModule } from '@auth0/angular-jwt';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -20,7 +20,13 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     UiModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config:{
+        tokenGetter:()=>localStorage.getItem("accessToken"),
+        allowedDomains:["localhost:7131"]
+      }
+    })
 
   ],
   providers: [{ provide: 'baseUrl', useValue: 'https://localhost:7292/api' }],
