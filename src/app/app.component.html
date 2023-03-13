@@ -14,15 +14,17 @@
           <a class="nav-link active" aria-current="page" routerLink="">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="admin">Yönetici Paneli</a>
+          <a class="nav-link active" aria-current="page" routerLink="admin" *ngIf="authService.isAuthenticated">Yönetici Paneli</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="register">Kayıt Ol</a>
+          <a class="nav-link active" aria-current="page" routerLink="register" *ngIf="!authService.isAuthenticated">Kayıt Ol</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="login">Giriş</a>
+          <a class="nav-link active" aria-current="page" routerLink="login" *ngIf="!authService.isAuthenticated">Giriş</a>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" (click)="signOut()"  *ngIf="authService.isAuthenticated">Çıkış</a>
+        </li>
       </ul>
 
     </div>
