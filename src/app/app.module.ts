@@ -8,11 +8,12 @@ import { UiModule } from './ui/ui.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './ui/components/login/login.component';
+import { HttpErrorHandlerInterceptorService } from './services/common/http-error-handler-interceptor.service';
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -29,20 +30,14 @@ import { LoginComponent } from './ui/components/login/login.component';
       },
     }),
   ],
-  providers: [{ provide: 'baseUrl', useValue: 'https://localhost:7292/api' },
-  {
-    provide: "SocialAuthServiceConfig",
-    useValue: {
-      autoLogin: false,
-      providers: [
-        {
-          id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider("902986185803-4dl068flq4g27bpj299khhlq7es3g988.apps.googleusercontent.com")
-        }
-      ],
-      onError: err => console.log(err)
-    } as SocialAuthServiceConfig
-  }],
+  providers: [
+    { provide: 'baseUrl', useValue: 'https://localhost:7292/api' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorHandlerInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
