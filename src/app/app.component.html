@@ -23,7 +23,7 @@
           <a class="nav-link active" aria-current="page" routerLink="login" *ngIf="!authService.isAuthenticated">Giriş</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" (click)="signOut()"  *ngIf="authService.isAuthenticated">Çıkış</a>
+          <a class="nav-link active" aria-current="page" (click)="signOut()" style="cursor:pointer"  *ngIf="authService.isAuthenticated">Çıkış</a>
         </li>
       </ul>
 

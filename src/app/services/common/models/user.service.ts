@@ -23,23 +23,22 @@ export class UserService {
     return await firstValueFrom(observable) as CreateUser;
   }
 
-  async login(userNameOrEmail:string,password:string,callBackFunction:()=>void):Promise<any>{
-    const observable:Observable<any | TokenResponse> = this.http.post<any | TokenResponse>({
-      controller:"users",
-      action:"Login",
-    },{userNameOrEmail,password})
+  async login(userNameOrEmail: string, password: string, callBackFunction?: () => void): Promise<any> {
+    const observable: Observable<any | TokenResponse> = this.http.post<any | TokenResponse>({
+      controller: "users",
+      action: "login"
+    }, { userNameOrEmail, password })
+    const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
 
-    const tokenResponse:TokenResponse= await firstValueFrom(observable) as TokenResponse
-    if(tokenResponse){
+    if (tokenResponse) {
+      localStorage.setItem("accessToken", tokenResponse.token.accessToken);
 
-
-      localStorage.setItem("accessToken",tokenResponse.token.accessToken)
-
-      this.toastrService.message("Kullanıcı Girişi Başarılı","Giriş Başarılı",{
-        messagaPosition:ToastrMessagePosition.BottomFullWidth,
-        messageType:ToastrMessageType.Success
+      this.toastrService.message("Kullanıcı girişi başarıyla sağlanmıştır.", "Giriş Başarılı", {
+        messageType: ToastrMessageType.Success,
+        messagaPosition: ToastrMessagePosition.TopRight
       })
     }
+
     callBackFunction();
   }
 }

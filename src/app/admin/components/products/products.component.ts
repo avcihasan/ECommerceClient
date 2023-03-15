@@ -22,7 +22,6 @@ export class ProductsComponent extends BaseComponent implements OnInit {
   @ViewChild(ListProductsComponent) listProductComponent:ListProductsComponent;
 
 createdProduct(createdProduct:CreateProduct){
-  debugger;
  this.listProductComponent.getProducts();
 
 }
