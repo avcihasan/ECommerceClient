@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { catchError, of } from 'rxjs';
 import { Observable } from 'rxjs';
 import { CustomToastrService, ToastrMessagePosition, ToastrMessageType } from '../ui/custom-toastr.service';
+import { UserAuthService } from './models/user-auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
 
-  constructor(private toastrService:CustomToastrService) { }
+  constructor(private toastrService:CustomToastrService,private userAuthService:UserAuthService) { }
 
   intercept(req:HttpRequest<any>,next:HttpHandler):Observable<HttpEvent<any>>
   {
@@ -20,6 +21,12 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
             messageType: ToastrMessageType.Warning,
             messagaPosition: ToastrMessagePosition.BottomFullWidth
           });
+
+
+          this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken")).then(data=>{
+
+          });
+
           break;
         case HttpStatusCode.InternalServerError:
           this.toastrService.message("Sunucuya erişilmiyor!", "Sunucu hatası!", {
