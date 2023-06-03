@@ -4,6 +4,7 @@ import { HomeModule } from './home/home.module';
 import { RegisterComponent } from './register/register.component';
 import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
+import { ProductsModule } from './products/products.module';
 
 
 
@@ -14,6 +15,7 @@ import { LoginModule } from './login/login.module';
     CommonModule,
     HomeModule,
     RegisterModule,
+    ProductsModule
     // LoginModule
   ]
 })
