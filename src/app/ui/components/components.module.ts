@@ -5,6 +5,8 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
 import { ProductsModule } from './products/products.module';
+import { BasketsComponent } from './baskets/baskets.component';
+import { BasketsModule } from './baskets/baskets.module';
 
 
 
@@ -17,6 +19,9 @@ import { ProductsModule } from './products/products.module';
     RegisterModule,
     ProductsModule
     // LoginModule
+  ],
+  exports:[
+    BasketsModule
   ]
 })
 export class ComponentsModule { }

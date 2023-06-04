@@ -3,7 +3,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
+  <div class="container">
     <a class="navbar-brand" routerLink="">E-Commerce</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -16,22 +16,30 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="products">Products</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="">Basket</a>
-        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="baskets">Basket</a>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="admin" *ngIf="authService.isAuthenticated">Yönetici Paneli</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="register" *ngIf="!authService.isAuthenticated">Kayıt Ol</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="login" *ngIf="!authService.isAuthenticated">Giriş</a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" (click)="signOut()" style="cursor:pointer"  *ngIf="authService.isAuthenticated">Çıkış</a>
-        </li>
+        </li> -->
       </ul>
+
+      <div class="d-flex">
+        <button  type="button" class="btn btn-outline-success mx-1"data-bs-toggle="modal" data-bs-target="#exampleModal" *ngIf="authService.isAuthenticated">Sepet</button>
+        <button class="btn btn-outline-danger mx-1" routerLink="baskets" *ngIf="authService.isAuthenticated" (click)="signOut()" style="cursor:pointer" >Çıkış</button>
+        <button class="btn btn-outline-primary mx-1" routerLink="login" *ngIf="!authService.isAuthenticated">Giriş</button>
+        <button class="btn btn-outline-warning mx-1" routerLink="register" *ngIf="!authService.isAuthenticated">Kayıt</button>
+      </div>
+
 
     </div>
   </div>
@@ -42,3 +50,6 @@
 <ngx-spinner name="s1" type="ball-scale-multiple"></ngx-spinner>
 <ngx-spinner name="s2"  type="square-jelly-box"></ngx-spinner>
 <ngx-spinner name="s3" type="cog"></ngx-spinner>
+
+
+<app-baskets></app-baskets>
