@@ -50,7 +50,7 @@
           type="button"
           class="btn btn-outline-success mx-1"
           data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
+          data-bs-target="#basketModal"
           *ngIf="authService.isAuthenticated"
           (click)="loadComponent()"
         >
@@ -93,7 +93,7 @@
 <!-- <app-baskets></app-baskets> -->
 <div
   class="modal fade"
-  id="exampleModal"
+  id="basketModal"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
@@ -109,15 +109,8 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body">
-<ng-template appDynamicLoadComponent></ng-template>
 
-<div class="modal-footer">
-  <button type="button" class="btn btn-primary">
-    Alışverişi Tamamla
-  </button>
-</div>
-</div>
-</div>
-</div>
+      <ng-template appDynamicLoadComponent></ng-template>
+    </div>
+  </div>
 </div>
