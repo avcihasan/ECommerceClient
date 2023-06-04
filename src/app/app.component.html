@@ -1,11 +1,15 @@
-
-
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" routerLink="">E-Commerce</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -14,13 +18,21 @@
           <a class="nav-link active" aria-current="page" routerLink="">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="products">Products</a>
+          <a class="nav-link active" aria-current="page" routerLink="products"
+            >Products</a
+          >
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="baskets">Basket</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="admin" *ngIf="authService.isAuthenticated">Yönetici Paneli</a>
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="admin"
+            *ngIf="authService.isAuthenticated"
+            >Yönetici Paneli</a
+          >
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="register" *ngIf="!authService.isAuthenticated">Kayıt Ol</a>
@@ -34,13 +46,40 @@
       </ul>
 
       <div class="d-flex">
-        <button  type="button" class="btn btn-outline-success mx-1"data-bs-toggle="modal" data-bs-target="#exampleModal" *ngIf="authService.isAuthenticated">Sepet</button>
-        <button class="btn btn-outline-danger mx-1" routerLink="baskets" *ngIf="authService.isAuthenticated" (click)="signOut()" style="cursor:pointer" >Çıkış</button>
-        <button class="btn btn-outline-primary mx-1" routerLink="login" *ngIf="!authService.isAuthenticated">Giriş</button>
-        <button class="btn btn-outline-warning mx-1" routerLink="register" *ngIf="!authService.isAuthenticated">Kayıt</button>
+        <button
+          type="button"
+          class="btn btn-outline-success mx-1"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          *ngIf="authService.isAuthenticated"
+          (click)="loadComponent()"
+        >
+          Sepet
+        </button>
+        <button
+          class="btn btn-outline-danger mx-1"
+          routerLink="baskets"
+          *ngIf="authService.isAuthenticated"
+          (click)="signOut()"
+          style="cursor: pointer"
+        >
+          Çıkış
+        </button>
+        <button
+          class="btn btn-outline-primary mx-1"
+          routerLink="login"
+          *ngIf="!authService.isAuthenticated"
+        >
+          Giriş
+        </button>
+        <button
+          class="btn btn-outline-warning mx-1"
+          routerLink="register"
+          *ngIf="!authService.isAuthenticated"
+        >
+          Kayıt
+        </button>
       </div>
-
-
     </div>
   </div>
 </nav>
@@ -48,8 +87,37 @@
   <router-outlet></router-outlet>
 </div>
 <ngx-spinner name="s1" type="ball-scale-multiple"></ngx-spinner>
-<ngx-spinner name="s2"  type="square-jelly-box"></ngx-spinner>
+<ngx-spinner name="s2" type="square-jelly-box"></ngx-spinner>
 <ngx-spinner name="s3" type="cog"></ngx-spinner>
 
+<!-- <app-baskets></app-baskets> -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+<ng-template appDynamicLoadComponent></ng-template>
 
-<app-baskets></app-baskets>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary">
+    Alışverişi Tamamla
+  </button>
+</div>
+</div>
+</div>
+</div>
+</div>
