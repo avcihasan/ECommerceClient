@@ -16,12 +16,12 @@ import { DeleteDirective } from 'src/app/directives/admin/delete.directive';
 import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 import { DialogModule } from 'src/app/dialogs/dialog.module';
 import { FileUploadModule } from 'src/app/services/common/file-upload/file-upload.module';
+import { DeleteModule } from 'src/app/directives/admin/delete.module';
 @NgModule({
   declarations: [
     ProductsComponent,
     CreateProductComponent,
     ListProductsComponent,
-    DeleteDirective,
   ],
   imports: [
     CommonModule,
@@ -34,7 +34,9 @@ import { FileUploadModule } from 'src/app/services/common/file-upload/file-uploa
     MatTableModule,
     MatPaginatorModule,
     MatToolbarModule,
-    DialogModule,FileUploadModule
+    DialogModule,FileUploadModule,
+    DeleteModule
+
   ],
 })
 export class ProductsModule {}

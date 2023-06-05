@@ -29,6 +29,8 @@ export class ListComponent extends BaseComponent implements OnInit {
   baseUrl: BaseUrl;
 
   async ngOnInit() {
+    this.showSpinner(SpinnerType.BallScaleMultiple);
+
     this.baseUrl = await this.fileService.getBaseStorageUrl();
     this.activatedRoute.params.subscribe(async (params) => {
       this.currentPageNo = parseInt(params['pageNo'] ?? 1);
@@ -73,6 +75,7 @@ export class ListComponent extends BaseComponent implements OnInit {
       else
         for (let i = this.currentPageNo - 3; i <= this.currentPageNo + 3; i++)
           this.pageList.push(i);
+          this.hideSpinner(SpinnerType.BallScaleMultiple);
     });
   }
 

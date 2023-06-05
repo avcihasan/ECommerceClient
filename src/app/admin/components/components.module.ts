@@ -9,13 +9,14 @@ import { ProductsModule } from './products/products.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     CustomersModule,
     DashboardModule,
     OrdersModule,
-    ProductsModule
+    ProductsModule,
   ]
 })
 export class ComponentsModule { }
