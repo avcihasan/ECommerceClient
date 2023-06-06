@@ -6,4 +6,5 @@ export class SingleOrder {
     id: string;
     orderCode: string;
     totalPrice:number;
+    completed: boolean;
   }

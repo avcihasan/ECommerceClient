@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DeleteModule } from 'src/app/directives/admin/delete.module';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 
@@ -25,6 +27,8 @@ import { DeleteModule } from 'src/app/directives/admin/delete.module';
       {path:"",component:OrdersComponent}
     ]),
     MatSidenavModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatPaginatorModule,
+    MatCheckboxModule,
+    MatToolbarModule,
     DialogModule,
     DeleteModule
   ]

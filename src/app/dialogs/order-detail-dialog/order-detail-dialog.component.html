@@ -2,7 +2,7 @@
 <mat-dialog-content class="mat-typography">
 
   <mat-toolbar>
-    <span>Sipariş No : {{singleOrder.orderCode}}</span>
+    <span>Sipariş No : {{orderCode}}</span>
   </mat-toolbar>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 order-detail-table">
@@ -45,13 +45,13 @@
     </thead>
     <tbody>
       <tr>
-        <td style="text-align:right;color:red;font-size:20px;">{{singleOrder.totalPrice | currency : '₺'}}</td>
+        <td style="text-align:right;color:red;font-size:20px;">{{totalPrice | currency : '₺'}}</td>
       </tr>
       <tr>
-        <td style="text-align:right;font-size:12px;"><strong>Address : {{singleOrder.address}}</strong></td>
+        <td style="text-align:right;font-size:12px;"><strong>Address : {{address}}</strong></td>
       </tr>
       <tr>
-        <td style="text-align:right;font-size:12px;"><strong>Description : {{singleOrder.description}}</strong></td>
+        <td style="text-align:right;font-size:12px;"><strong>Description : {{description}}</strong></td>
       </tr>
     </tbody>
   </table>
@@ -67,5 +67,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Kapat</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Siparişi Tamamlama</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial   (click)="completeOrder()" *ngIf="!completed">Siparişi Tamamlama</button>
 </mat-dialog-actions>
