@@ -7,6 +7,10 @@ import { LoginModule } from './login/login.module';
 import { ProductsModule } from './products/products.module';
 import { BasketsComponent } from './baskets/baskets.component';
 import { BasketsModule } from './baskets/baskets.module';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
+import { UpdatePasswordModule } from './update-password/update-password.module';
+import { PasswordResetModule } from './password-reset/password-reset.module';
 
 
 
@@ -17,7 +21,9 @@ import { BasketsModule } from './baskets/baskets.module';
     CommonModule,
     HomeModule,
     RegisterModule,
-    ProductsModule
+    ProductsModule,
+    UpdatePasswordModule,
+    PasswordResetModule
     // LoginModule
   ],
   exports:[
