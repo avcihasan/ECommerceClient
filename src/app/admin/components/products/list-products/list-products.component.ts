@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { GetProducts } from 'src/app/contracts/get-products';
 import { ListProduct } from 'src/app/contracts/list-products';
+import { QrcodeDialogComponent } from 'src/app/dialogs/qrcode-dialog/qrcode-dialog.component';
 import { SelectProductImageDialogComponent, SelectProductImageState } from 'src/app/dialogs/select-product-image-dialog/select-product-image-dialog.component';
 import {
   AlertifyMessagePosition,
@@ -38,6 +39,7 @@ export class ListProductsComponent extends BaseComponent implements OnInit {
     'createdDate',
     'updatedDate',
     'photos',
+    'qrcode',
     'update',
     'delete',
   ];
@@ -84,5 +86,12 @@ export class ListProductsComponent extends BaseComponent implements OnInit {
       }
     })
 
+  }
+  showQRCode(productId: string) {
+    this.dialogService.openDialog({
+      componentType: QrcodeDialogComponent,
+      data: productId,
+      afterClosed: () => { }
+    })
   }
 }

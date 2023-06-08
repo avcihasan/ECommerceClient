@@ -26,21 +26,21 @@ export class HttpClientService {
       url = `${this.url(request)}${id ? `/${id}` : ''}${
         request.queryString ? `?${request.queryString}` : ''
       }`;
-    return this.httpClient.get<T>(url, { headers: request.headers });
+    return this.httpClient.get<T>(url, { headers: request.headers, responseType: request.responseType as 'json'  });
   }
   post<T>(
-    requestParameter: Partial<RequestParameters>,
+    request: Partial<RequestParameters>,
     body: Partial<T>
   ): Observable<T> {
     let url: string = '';
-    if (requestParameter.fullEndPoint) url = requestParameter.fullEndPoint;
-    else url = `${this.url(requestParameter)}`;
-    url = `${this.url(requestParameter)}${
-      requestParameter.queryString ? `?${requestParameter.queryString}` : ''
+    if (request.fullEndPoint) url = request.fullEndPoint;
+    else url = `${this.url(request)}`;
+    url = `${this.url(request)}${
+      request.queryString ? `?${request.queryString}` : ''
     }`;
 
     return this.httpClient.post<T>(url, body, {
-      headers: requestParameter.headers,
+      headers: request.headers, responseType: request.responseType as 'json' 
     });
   }
 
@@ -49,7 +49,7 @@ export class HttpClientService {
     if (request.fullEndPoint) url = request.fullEndPoint;
     else url = `${this.url(request)}`;
 
-    return this.httpClient.put<T>(url, body, { headers: request.headers });
+    return this.httpClient.put<T>(url, body, { headers: request.headers, responseType: request.responseType as 'json'  });
   }
 
   delete<T>(request: Partial<RequestParameters>, id: string): Observable<T> {
@@ -60,7 +60,7 @@ export class HttpClientService {
       request.queryString ? `?${request.queryString}` : ''
     }`;
     debugger
-    return this.httpClient.delete<T>(url, { headers: request.headers });
+    return this.httpClient.delete<T>(url, { headers: request.headers, responseType: request.responseType as 'json'  });
   }
 }
 
@@ -71,4 +71,5 @@ export class RequestParameters {
   baseUrl?: string;
   fullEndPoint?: string;
   queryString?: string;
+  responseType?: string = 'json';
 }
