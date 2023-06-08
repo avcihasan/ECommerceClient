@@ -1,0 +1,22 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .role-create {
+    margin: 5px 5px 5px
+  }
+  
+  .btn {
+    margin: 5px 5px 5px
+  }
+
+  p{
+    margin: 0 10px;
+  } 
+  .createRole-button{
+    width: 100%;
+    text-align: center !important;
+  }
+  

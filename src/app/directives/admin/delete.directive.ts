@@ -43,11 +43,12 @@ export class DeleteDirective {
        afterClosed:async ()=>{
         this.spinner.show(SpinnerType.SquarejellyBox)
         const td:HTMLTableCellElement=this.element.nativeElement;
-
        this.httpService.delete({controller:this.controller},this.id).subscribe(data=>{
         $(td.parentElement).fadeOut(1000,()=>{
+          this.spinner.hide(SpinnerType.SquarejellyBox);
+
           this.callback.emit();
-          this.alertify.message("Ürün başarılı bir şekilde silindi.",{dismissothers:true,messagePosition:AlertifyMessagePosition.TopCenter,messageType:AlertifyMessageType.Success})
+          this.alertify.message(`${this.controller == 'roles' ? 'Rol' : 'Ürün'} başarıyla silinmiştir.`,{dismissothers:true,messagePosition:AlertifyMessagePosition.TopCenter,messageType:AlertifyMessageType.Success})
 
         });
        },(err:HttpErrorResponse)=>{

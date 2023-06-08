@@ -2,14 +2,16 @@
   width: 100%;
   height: 80vh;
   margin: 2px 0 2px 0;
-  border: 1px solid #555;
+  border: 1px solid white;
 }
 .admin-sidebar{
-  width: 10%;
-  border-right-color: #555;
+  width: 12%;
+  border: 1px solid white;
+  background-color: brown;
 }
 
 .adminProcess-container{
-  background-color: white;
+  background-color: brown;
   padding: 10px;
+  border: 1px solid white;
 }

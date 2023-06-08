@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+  }
+  .roles-header{
+    background-color: brown;
+    color: white;
+    height: 35px;
+  }
+
+  .roleContainer{
+    border: 1px solid white;
+  }

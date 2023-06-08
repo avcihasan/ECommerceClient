@@ -36,6 +36,10 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
                 });
             }
           }).then(data => {
+          this.toastrService.message("Bu işlemi yapmaya yetkiniz bulunmamaktadır!", "Yetkisiz işlem!", {
+              messageType: ToastrMessageType.Warning,
+              messagaPosition: ToastrMessagePosition.BottomFullWidth
+            });
 
           });
 
